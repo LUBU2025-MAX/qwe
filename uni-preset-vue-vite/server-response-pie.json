@@ -1,0 +1,33 @@
+{
+  "id": 9,
+  "question": "简单柱状图",
+  "answer": "以下是本季度各类钢材销售占比：从数据可以看出...",
+  "chartOptions": {
+    "type": "pie",
+    "title": { "text": "各类钢材销售占比(%)" },
+    "data": {
+      "series": [
+        { "name": "不锈钢", "value": 42 },
+        { "name": "高强度钢筋", "value": 28 },
+        { "name": "结构钢", "value": 18 },
+        { "name": "合金钢", "value": 12 }
+      ]
+    },
+    "extra": {
+      "pie": {
+        "labelWidth": 15,
+        "activeRadius": 10,
+        "offsetAngle": 0,
+        "legendWidth": 15,
+        "labelCenterPosition": false,
+        "border": false,
+        "labelShow": true,
+        "labelPosition": "outside"
+      }
+    },
+    "legend": true,
+    "color": ["#5470c6", "#91cc75", "#fac858", "#ee6666"]
+  },
+  "timestamp": 1622548800000,
+  "hasComplexContent": true
+} 

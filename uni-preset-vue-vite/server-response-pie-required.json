@@ -1,0 +1,8 @@
+{
+  "id": 9,
+  "question": "饼图请求",
+  "answer": "这是您请求的饼图：",
+  "chartOptions": {
+    "type": "pie",
+    "title": { "text": "图表标题" },
+    "

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一键式物流追溯 - 优化版</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* 背景装饰 */
+    .bg-decoration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 180, 204, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 180, 204, 0.03) 0%, transparent 20%),
+        linear-gradient(to right, rgba(0, 180, 204, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 180, 204, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+      background-position: 0 0, 0 0, 0 0, 0 0;
+      opacity: 0.8;
+    }
+    
+    /* 顶部导航 */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      height: 96px;
+      padding: 0 10px;
+    }
+    
+    .back-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      margin-right: 15px;
+    }
+    
+    .back-icon {
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #333;
+      border-left: 2px solid #333;
+      transform: rotate(-45deg);
+    }
+    
+    .page-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    /* 页面标题区域 */
+    .header-section {
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 10px;
+    }
+    
+    .header-section::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      height: 30px;
+      width: 4px;
+      background: linear-gradient(to bottom, #00b4cc, #008B8B);
+      border-radius: 2px;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* 搜索区域 */
+    .search-section {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .search-decoration {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 180, 204, 0.05) 0%, transparent 70%);
+    }
+    
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .input-container {
+      flex: 1;
+      position: relative;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: #aaa;
+    }
+    
+    .product-input {
+      width: 100%;
+      height: 50px;
+      background-color: #f9f9f9;
+      border: 1px solid #e5e5e5;
+      border-radius: 25px;
+      padding: 0 15px 0 40px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .product-input:focus {
+      outline: none;
+      border-color: #00b4cc;
+      box-shadow: 0 0 0 2px rgba(0, 180, 204, 0.2);
+      background-color: #fff;
+    }
+    
+    .scan-btn {
+      width: 30px;
+      height: 30px;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: -40px;
+      z-index: 2;
+      cursor: pointer;
+    }
+    
+    .search-button {
+      min-width: 90px;
+      height: 50px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #00b4cc 0%, #008B8B 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 180, 204, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .search-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 180, 204, 0.3);
+    }
+    
+    .search-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 5px rgba(0, 180, 204, 0.3);
+    }
+    
+    /* 查询历史 */
+    .search-history {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .history-tag {
+      font-size: 12px;
+      color: #666;
+      background-color: #f1f1f1;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    
+    .history-tag:hover {
+      background-color: #e5e5e5;
+    }
+    
+    /* 结果区域 */
+    .result-section {
+      margin-top: 30px;
+    }
+    
+    .result-card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      overflow: hidden;
+      border: 1px solid #eee;
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .card-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00b4cc 0%, #008B8B 100%);
+      border-radius: 50%;
+      margin-right: 10px;
+      position: relative;
+    }
+    
+    .card-icon.product-icon::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 2px solid white;
+      border-radius: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .card-icon.warning-icon::after {
+      content: '!';
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .card-content {
+      padding: 20px;
+    }
+    
+    /* 产品信息表格 */
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .product-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    
+    .product-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .property-name {
+      font-size: 14px;
+      color: #888;
+      width: 30%;
+    }
+    
+    .property-value {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: #e0f7fa;
+      color: #00838f;
+    }
+    
+    /* 预警信息 */
+    .warning-list {
+      list-style: none;
+    }
+    
+    .warning-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    
+    .warning-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+    
+    .status-normal {
+      background-color: #4caf50;
+    }
+    
+    .status-warning {
+      background-color: #ff9800;
+    }
+    
+    .warning-text {
+      font-size: 14px;
+      color: #333;
+      flex: 1;
+    }
+    
+    .progress-container {
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      height: 6px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #00b4cc, #008B8B);
+      width: 70%;
+    }
+    
+    /* 物流线路 */
+    .logistics-timeline {
+      margin-top: 20px;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 15px;
+      bottom: 15px;
+      width: 2px;
+      background-color: #e0e0e0;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-bottom: 20px;
+    }
+    
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid #00b4cc;
+      left: -25px;
+      top: 5px;
+    }
+    
+    .timeline-dot.active {
+      background-color: #00b4cc;
+    }
+    
+    .timeline-content {
+      padding-left: 15px;
+    }
+    
+    .timeline-time {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 5px;
+    }
+    
+    .timeline-text {
+      font-size: 14px;
+      color: #333;
+    }
+    
+    /* 底部按钮区域 */
+    .button-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding-bottom: 40px;
+    }
+    
+    .action-button {
+      background-color: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+    
+    .action-icon {
+      margin-right: 5px;
+      width: 16px;
+      height: 16px;
+    }
+    
+    .visualization-button {
+      padding: 12px 30px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #00b4cc 0%, #008B8B 100%);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 180, 204, 0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+    
+    .visualization-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 180, 204, 0.3);
+    }
+    
+    .visualization-button:active {
+      transform: translateY(1px);
+    }
+    
+    .visualization-icon {
+      margin-right: 8px;
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+    
+    .visualization-icon::before,
+    .visualization-icon::after {
+      content: '';
+      position: absolute;
+      background-color: white;
+    }
+    
+    .visualization-icon::before {
+      left: 2px;
+      top: 10px;
+      width: 16px;
+      height: 2px;
+    }
+    
+    .visualization-icon::after {
+      left: 10px;
+      top: 2px;
+      width: 2px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-decoration"></div>
+  
+  <div class="container">
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+      <div class="back-button">
+        <div class="back-icon"></div>
+      </div>
+      <div class="page-title">物流追溯</div>
+    </div>
+    
+    <!-- 标题区域 -->
+    <div class="header-section">
+      <h1 class="title">一键式物流追溯</h1>
+      <p class="subtitle">为您全方位提供从原料采购至成品交付的全生命周期物流信息服务，并精心构建预警系统，实时为您监察每一个环节。</p>
+    </div>
+    
+    <!-- 搜索区域 -->
+    <div class="search-section">
+      <div class="search-decoration"></div>
+      <div class="search-container">
+        <div class="input-container">
+          <div class="input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input type="text" class="product-input" placeholder="请输入产品编号" value="ST20231015-007">
+          <div class="scan-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 9V6a2 2 0 0 1 2-2h3"></path>
+              <path d="M19 9V6a2 2 0 0 0-2-2h-3"></path>
+              <path d="M2 15v3a2 2 0 0 0 2 2h3"></path>
+              <path d="M19 15v3a2 2 0 0 1-2 2h-3"></path>
+              <rect x="7" y="9" width="10" height="6" rx="1"></rect>
+            </svg>
+          </div>
+        </div>
+        <div class="search-button">查询</div>
+      </div>
+      <div class="search-history">
+        <div class="history-tag">ST20231014-083</div>
+        <div class="history-tag">ST20231010-124</div>
+        <div class="history-tag">ST20231005-042</div>
+      </div>
+    </div>
+    
+    <!-- 结果区域 -->
+    <div class="result-section">
+      <!-- 产品信息卡片 -->
+      <div class="result-card">
+        <div class="card-header">
+          <div class="card-icon product-icon"></div>
+          <div class="card-title">产品信息</div>
+        </div>
+        <div class="card-content">
+          <table class="product-table">
+            <tr>
+              <td class="property-name">产品编号</td>
+              <td class="property-value">ST20231015-007</td>
+            </tr>
+            <tr>
+              <td class="property-name">产品名称</td>
+              <td class="property-value">高强度钢材 HT-450</td>
+            </tr>
+            <tr>
+              <td class="property-name">生产日期</td>
+              <td class="property-value">2023-10-15</td>
+            </tr>
+            <tr>
+              <td class="property-name">当前位置</td>
+              <td class="property-value">上海仓储中心</td>
+            </tr>
+            <tr>
+              <td class="property-name">物流状态</td>
+              <td class="property-value">
+                <span class="status-badge">运输中</span>
+              </td>
+            </tr>
+          </table>
+          
+          <!-- 物流线路 -->
+          <div class="logistics-timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-content">
+                <div class="timeline-time">2023-10-15 08:30</div>
+                <div class="timeline-text">武汉生产基地 - 完成生产</div>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-content">
+                <div class="timeline-time">2023-10-15 14:45</div>
+                <div class="timeline-text">武汉物流中心 - 完成装货</div>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-content">
+                <div class="timeline-time">2023-10-17 09:20</div>
+                <div class="timeline-text">上海仓储中心 - 到达仓库</div>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-time">预计 2023-10-20</div>
+                <div class="timeline-text">苏州加工厂 - 等待到达</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 预警信息卡片 -->
+      <div class="result-card">
+        <div class="card-header">
+          <div class="card-icon warning-icon"></div>
+          <div class="card-title">预警信息</div>
+        </div>
+        <div class="card-content">
+          <ul class="warning-list">
+            <li class="warning-item">
+              <div class="status-dot status-normal"></div>
+              <div class="warning-info">
+                <div class="warning-text">预计3天后到达指定地点</div>
+                <div class="progress-container">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+            </li>
+            <li class="warning-item">
+              <div class="status-dot status-normal"></div>
+              <div class="warning-text">温度监控正常 (18°C - 22°C)</div>
+            </li>
+            <li class="warning-item">
+              <div class="status-dot status-normal"></div>
+              <div class="warning-text">湿度监控正常 (30% - 45%)</div>
+            </li>
+            <li class="warning-item">
+              <div class="status-dot status-warning"></div>
+              <div class="warning-text">注意: 预计运输路线遇雨天天气，已通知物流方做好防水措施</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部按钮区域 -->
+    <div class="button-section">
+      <div class="action-buttons">
+        <div class="action-button">
+          <span class="action-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </span>
+          导出报告
+        </div>
+      </div>
+      
+      <div class="visualization-button">
+        <div class="visualization-icon"></div>
+        可视化
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 简单的交互效果示例
+    document.querySelector('.search-button').addEventListener('click', function() {
+      // 显示加载效果的代码将在这里
+      console.log('查询按钮被点击');
+    });
+    
+    document.querySelector('.visualization-button').addEventListener('click', function() {
+      alert('可视化功能开发中');
+    });
+    
+    document.querySelector('.back-button').addEventListener('click', function() {
+      console.log('返回按钮被点击');
+    });
+    
+    // 添加历史标签点击效果
+    const historyTags = document.querySelectorAll('.history-tag');
+    historyTags.forEach(tag => {
+      tag.addEventListener('click', function() {
+        document.querySelector('.product-input').value = this.textContent;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+    "responses": [
+      {
+        "id": 1,
+        "question": "最近几个月的钢材销量如何?",
+        "answer": "以下是最近六个月的钢材销量统计图表：\n\n```chart\n{\n  \"type\": \"column\",\n  \"title\": {\n    \"text\": \"钢材月度销量统计(吨)\",\n    \"fontSize\": 16,\n    \"color\": \"#333333\"\n  },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"],\n    \"series\": [\n      {\n        \"name\": \"螺纹钢\",\n        \"data\": [320, 420, 380, 450, 490, 520]\n      },\n      {\n        \"name\": \"热轧卷板\",\n        \"data\": [280, 350, 310, 370, 390, 410]\n      },\n      {\n        \"name\": \"冷轧卷板\",\n        \"data\": [220, 240, 230, 260, 270, 290]\n      }\n    ]\n  },\n  \"padding\": [30, 60, 30, 60],\n  \"background\": \"#ffffff\",\n  \"enableScroll\": false,\n  \"xAxis\": {\n    \"show\": true\n  }\n}\n```\n\n从图表可以看出，各类钢材的销量总体呈现上升趋势。尤其是螺纹钢，从1月的320吨增长到6月的520吨，增幅显著。"
+      },
+      {
+        "id": 2,
+        "question": "各类钢材的市场份额是怎样的?",
+        "answer": "以下是当前季度各类钢材的市场份额占比：\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": {\n    \"text\": \"各类钢材市场份额占比(%)\",\n    \"fontSize\": 16,\n    \"color\": \"#333333\"\n  },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"螺纹钢\", \"value\": 35 },\n      { \"name\": \"热轧卷板\", \"value\": 25 },\n      { \"name\": \"冷轧卷板\", \"value\": 18 },\n      { \"name\": \"不锈钢\", \"value\": 12 },\n      { \"name\": \"合金钢\", \"value\": 10 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"labelShow\": true,\n      \"border\": false\n    }\n  },\n  \"background\": \"#ffffff\"\n}\n```\n\n从市场份额来看，螺纹钢占据最大市场份额(35%)，其次是热轧卷板(25%)和冷轧卷板(18%)。不锈钢和合金钢分别占据12%和10%的市场份额。"
+      },
+      {
+        "id": 3,
+        "question": "钢材价格趋势如何?",
+        "answer": "以下是近半年来主要钢材价格走势图：\n\n```chart\n{\n  \"type\": \"line\",\n  \"title\": {\n    \"text\": \"钢材价格走势(元/吨)\",\n    \"fontSize\": 16,\n    \"color\": \"#333333\"\n  },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"],\n    \"series\": [\n      {\n        \"name\": \"螺纹钢\",\n        \"data\": [4200, 4150, 4300, 4280, 4350, 4420]\n      },\n      {\n        \"name\": \"热轧卷板\",\n        \"data\": [4350, 4300, 4450, 4500, 4580, 4650]\n      },\n      {\n        \"name\": \"冷轧卷板\",\n        \"data\": [4800, 4750, 4900, 4950, 5050, 5100]\n      }\n    ]\n  },\n  \"background\": \"#ffffff\",\n  \"padding\": [15, 30, 15, 30]\n}\n```\n\n从价格走势来看，各类钢材价格总体呈上涨趋势。1月至6月期间，螺纹钢价格从4200元/吨上涨到4420元/吨，热轧卷板从4350元/吨上涨到4650元/吨，冷轧卷板从4800元/吨上涨到5100元/吨。"
+      },
+      {
+        "id": 4,
+        "question": "图表",
+        "answer": "以下是最近六个月的钢材销量统计图表：\n\n```chart\n{\n  \"type\": \"column\",\n  \"title\": { \n    \"text\": \"钢材月度销量统计(吨)\", \n    \"fontSize\": 16, \n    \"color\": \"#333333\" \n  },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"],\n    \"series\": [\n      {\n        \"name\": \"螺纹钢\",\n        \"data\": [320, 420, 380, 450, 490, 520]\n      },\n      {\n        \"name\": \"热轧卷板\",\n        \"data\": [280, 350, 310, 370, 390, 410]\n      },\n      {\n        \"name\": \"冷轧卷板\",\n        \"data\": [220, 240, 230, 260, 270, 290]\n      }\n    ]\n  },\n  \"padding\": [30, 60, 30, 60], \n  \"background\": \"#ffffff\",\n  \"enableScroll\": false,\n  \"xAxis\": { \n    \"show\": true, \n    \"axisLine\": true, \n    \"axisLineColor\": \"#cccccc\",\n    \"title\": \"\",\n    \"fontColor\": \"#666666\", \n    \"fontSize\": 12, \n    \"disableGrid\": true,\n    \"margin\": 10,\n    \"itemCount\": 6\n  },\n  \"yAxis\": { \n    \"show\": true, \n    \"data\": [ \n      {\n        \"min\": 0,\n        \"max\": 600, \n        \"fontColor\": \"#666666\",\n        \"fontSize\": 12,\n        \"title\": \"\",\n        \"titleFontSize\": 12,\n        \"format\": \"\"\n      }\n    ],\n    \"axisLine\": true, \n    \"axisLineColor\": \"#cccccc\",\n    \"gridType\": \"none\"\n  },\n  \"extra\": {\n    \"column\": {\n      \"type\": \"group\",\n      \"width\": 30, \n      \"seriesGap\": 5, \n      \"categoryGap\": 15,\n      \"barBorderRadius\": [3, 3, 0, 0],\n      \"labelPosition\": \"outside\",\n      \"labelFontSize\": 11,\n      \"labelFontColor\": \"#666666\",\n      \"labelDistance\": 4\n    }\n  },\n  \"legend\": { \n     \"show\": true,\n     \"position\": \"top\", \n     \"float\": \"center\",\n     \"itemGap\": 20, \n     \"fontColor\": \"#666666\",\n     \"fontSize\": 12,\n     \"padding\": 10,\n     \"margin\": 5\n  },\n  \"color\": [\"#5470C6\", \"#91CC75\", \"#FAC858\"] \n}\n```\n\n图表显示了主要产品的销售情况。",
+        "hasComplexContent": true
+      },
+      {
+        "id": 5,
+        "question": "销售趋势",
+        "answer": "## 销售数据分析\n\n以下是最近12个月的销售趋势图：\n\n```chart\n{\n  \"type\": \"line\",\n  \"title\": { \"text\": \"年度销售趋势\" },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\", \"7月\", \"8月\", \"9月\", \"10月\", \"11月\", \"12月\"],\n    \"series\": [\n      {\n        \"name\": \"销售额(万元)\",\n        \"data\": [2450, 2320, 2580, 2780, 2990, 3120, 3280, 3150, 3280, 3490, 3720, 3950]\n      },\n      {\n        \"name\": \"销售量(百吨)\",\n        \"data\": [520, 490, 530, 580, 620, 640, 660, 630, 650, 690, 710, 750]\n      }\n    ]\n  },\n  \"extra\": {\n    \"line\": { \"type\": \"curve\" }\n  },\n  \"legend\": true,\n  \"color\": [\"#409EFF\", \"#67C23A\"]\n}\n```\n\n**分析结论**：\n\n1. 全年销售呈现稳步上升趋势，年底达到高峰\n2. 3-6月和9-12月是两个明显的增长期\n3. 销售额增长速度高于销售量增长，说明产品均价有提升",
+        "hasComplexContent": true
+      },
+      {
+        "id": 6,
+        "question": "产品占比",
+        "answer": "# 产品销售结构分析\n\n以下是本季度各类钢材产品的销售占比：\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": { \"text\": \"第三季度产品销售占比(%)\" },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"螺纹钢\", \"value\": 35 },\n      { \"name\": \"热轧卷板\", \"value\": 25 },\n      { \"name\": \"冷轧卷板\", \"value\": 15 },\n      { \"name\": \"中厚板\", \"value\": 12 },\n      { \"name\": \"型钢\", \"value\": 8 },\n      { \"name\": \"其它\", \"value\": 5 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"legendWidth\": 15,\n      \"border\": false,\n      \"labelShow\": true,\n      \"labelPosition\": \"outside\"\n    }\n  },\n  \"legend\": true,\n  \"radius\": \"55%\"\n}\n```\n\n从占比图可以看出：\n- 螺纹钢仍是主要销售产品，占比达35%\n- 热轧和冷轧板材共占40%，是第二大产品线\n- 建议加强对型钢和中厚板的市场推广",
+        "hasComplexContent": true
+      },
+      {
+        "id": 7,
+        "question": "综合分析",
+        "answer": "# 钢铁行业综合分析报告\n\n## 1. 产量与销量对比\n\n```chart\n{\n  \"type\": \"column\",\n  \"title\": { \"text\": \"本年度季度产销量对比(千吨)\" },\n  \"data\": {\n    \"xAxis\": [\"Q1\", \"Q2\", \"Q3\", \"Q4\"],\n    \"series\": [\n      {\n        \"name\": \"产量\",\n        \"data\": [1250, 1350, 1200, 1400]\n      },\n      {\n        \"name\": \"销量\",\n        \"data\": [1180, 1320, 1150, 1380]\n      }\n    ]\n  },\n  \"extra\": {\n    \"column\": { \"type\": \"group\" }\n  },\n  \"legend\": true,\n  \"color\": [\"#409EFF\", \"#67C23A\"]\n}\n```\n\n## 2. 价格走势\n\n```chart\n{\n  \"type\": \"line\",\n  \"title\": { \"text\": \"主要产品价格走势(元/吨)\" },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\", \"7月\", \"8月\", \"9月\", \"10月\", \"11月\", \"12月\"],\n    \"series\": [\n      {\n        \"name\": \"螺纹钢\",\n        \"data\": [4050, 4120, 4080, 4150, 4220, 4280, 4250, 4180, 4230, 4310, 4380, 4420]\n      },\n      {\n        \"name\": \"热轧卷板\",\n        \"data\": [4250, 4310, 4280, 4350, 4420, 4480, 4450, 4380, 4420, 4500, 4570, 4620]\n      }\n    ]\n  },\n  \"extra\": {\n    \"line\": { \"type\": \"curve\" }\n  },\n  \"legend\": true\n}\n```\n\n## 3. 区域销售分布\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": { \"text\": \"销售区域分布(%)\" },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"华东\", \"value\": 32 },\n      { \"name\": \"华北\", \"value\": 26 },\n      { \"name\": \"华南\", \"value\": 18 },\n      { \"name\": \"西南\", \"value\": 12 },\n      { \"name\": \"东北\", \"value\": 8 },\n      { \"name\": \"西北\", \"value\": 4 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"legendWidth\": 15,\n      \"border\": false,\n      \"labelShow\": true,\n      \"labelPosition\": \"outside\"\n    }\n  },\n  \"legend\": true\n}\n```\n\n## 市场分析结论\n\n1. **产销情况**：全年产销率保持在95%以上，库存周转良好\n2. **价格趋势**：钢材价格整体呈上升趋势，第四季度增幅明显\n3. **区域特点**：华东、华北地区仍是主要市场，西南地区增长潜力较大\n4. **建议措施**：\n   - 加强西南和东北市场开发\n   - 调整产品结构，增加高附加值产品比例\n   - 适度控制库存，应对价格波动风险",
+        "hasComplexContent": true
+      },
+      {
+        "id": 8,
+        "question": "简单饼图",
+        "answer": "这是一个简单的饼图示例：\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": { \"text\": \"简单饼图示例\" },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"类别A\", \"value\": 30 },\n      { \"name\": \"类别B\", \"value\": 25 },\n      { \"name\": \"类别C\", \"value\": 15 },\n      { \"name\": \"类别D\", \"value\": 20 },\n      { \"name\": \"类别E\", \"value\": 10 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"legendWidth\": 15,\n      \"border\": false,\n      \"labelShow\": true,\n      \"labelPosition\": \"outside\"\n    }\n  },\n  \"legend\": true\n}\n```",
+        "hasComplexContent": true
+      },
+      {
+        "id": 9,
+        "question": "饼图请求",
+        "answer": "这是您请求的饼图：\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": { \"text\": \"图表标题\" },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"类别一\", \"value\": 42 },\n      { \"name\": \"类别二\", \"value\": 28 },\n      { \"name\": \"类别三\", \"value\": 18 },\n      { \"name\": \"其他\", \"value\": 12 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"legendWidth\": 15,\n      \"border\": false,\n      \"labelShow\": true,\n      \"labelPosition\": \"outside\"\n    }\n  },\n  \"legend\": true,\n  \"color\": [\"#5470c6\", \"#91cc75\", \"#fac858\", \"#ee6666\"]\n}\n```",
+        "timestamp": 1622548800000,
+        "hasComplexContent": true
+      },
+      {
+        "id": 10,
+        "question": "简单折线图",
+        "answer": "这是一个简单的折线图示例：\n\n```chart\n{\n  \"type\": \"line\",\n  \"title\": { \"text\": \"简单折线图示例\" },\n  \"data\": {\n    \"xAxis\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\"],\n    \"series\": [\n      {\n        \"name\": \"数据\",\n        \"data\": [10, 25, 15, 30, 20]\n      }\n    ]\n  },\n  \"extra\": {\n    \"line\": { \"type\": \"straight\" }\n  },\n  \"legend\": false\n}\n```",
+        "hasComplexContent": true
+      },
+      {
+        "id": 11,
+        "question": "钢材产销对比分析",
+        "answer": "以下是近五年钢材产销对比分析：\n\n```chart\n{\n  \"categories\": [\"2019\", \"2020\", \"2021\", \"2022\", \"2023\"],\n  \"series\": [\n    {\n      \"name\": \"产量(万吨)\",\n      \"data\": [182, 165, 178, 190, 205]\n    },\n    {\n      \"name\": \"销量(万吨)\",\n      \"data\": [175, 158, 172, 185, 196]\n    }\n  ]\n}\n```\n\n从图表可以看出，近五年来钢材产量和销量总体呈上升趋势，除2020年受疫情影响有所下降外，其他年份均保持增长。产销比(销量/产量)维持在95%左右，说明市场消化能力较强。",
+        "hasComplexContent": true
+      },
+      {
+        "id": 12,
+        "question": "各类钢材市场份额",
+        "answer": "以下是2023年度各类钢材市场份额占比分析：\n\n```chart\n{\n  \"categories\": [\"建筑钢材\", \"汽车板\", \"家电板\", \"船舶板\", \"管线钢\", \"其他\"],\n  \"series\": [\n    {\n      \"name\": \"市场份额\",\n      \"data\": [42, 18, 15, 10, 8, 7]\n    }\n  ]\n}\n```\n\n从市场份额来看，建筑钢材占据最大市场份额(42%)，其次是汽车板(18%)和家电板(15%)。船舶板、管线钢和其他类型钢材分别占10%、8%和7%。这表明建筑行业仍是钢材最主要的消费市场。",
+        "hasComplexContent": true
+      },
+      {
+        "id": 13,
+        "question": "钢材月度销量趋势",
+        "answer": "以下是最近12个月的钢材月度销量趋势图表：\n\n```chart\n{\n  \"categories\": [\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\", \"7月\", \"8月\", \"9月\", \"10月\", \"11月\", \"12月\"],\n  \"series\": [\n    {\n      \"name\": \"螺纹钢\",\n      \"data\": [42, 38, 45, 50, 52, 48, 55, 58, 56, 60, 65, 68]\n    },\n    {\n      \"name\": \"热轧卷板\",\n      \"data\": [35, 32, 38, 40, 43, 41, 45, 48, 46, 50, 53, 55]\n    },\n    {\n      \"name\": \"冷轧卷板\",\n      \"data\": [28, 25, 30, 32, 34, 33, 36, 38, 37, 40, 42, 45]\n    }\n  ]\n}\n```\n\n从销量趋势看，三种主要钢材产品在全年呈现稳步上升趋势，尤其在下半年增长更为明显。螺纹钢的销量领先，从1月的42万吨增长到12月的68万吨，增长率约62%。热轧卷板和冷轧卷板也有类似的增长模式。",
+        "hasComplexContent": true
+      }
+    ]
+  }
