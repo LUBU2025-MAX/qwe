@@ -1,7 +1,0 @@
-{
-  "id": 9,
-  "question": "饼图请求",
-  "answer": "这是您请求的饼图：\n\n```chart\n{\n  \"type\": \"pie\",\n  \"title\": { \"text\": \"图表标题\" },\n  \"data\": {\n    \"series\": [\n      { \"name\": \"类别一\", \"value\": 42 },\n      { \"name\": \"类别二\", \"value\": 28 },\n      { \"name\": \"类别三\", \"value\": 18 },\n      { \"name\": \"其他\", \"value\": 12 }\n    ]\n  },\n  \"extra\": {\n    \"pie\": {\n      \"labelWidth\": 15,\n      \"activeRadius\": 10,\n      \"offsetAngle\": 0,\n      \"legendWidth\": 15,\n      \"border\": false,\n      \"labelShow\": true,\n      \"labelPosition\": \"outside\"\n    }\n  },\n  \"legend\": true,\n  \"color\": [\"#5470c6\", \"#91cc75\", \"#fac858\", \"#ee6666\"]\n}\n```\n\n以上是各类别的占比情况。",
-  "timestamp": 1622548800000,
-  "hasComplexContent": true
-} 
